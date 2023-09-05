@@ -2,13 +2,15 @@
   <header class="header">
     <h1 class="title">My NuxtBoard</h1>
   </header>
+
   <body>
     <article class="link-wrapper">
       <NuxtLink class="links" to="/">
-        <h3 class="job-title">Senior Software Engineer</h3>
+        <h3 class="job-title">Personal Finance Writer & Editor</h3>
         <div class="job-details">
           <section class="job-location">
-            <img src="~/assets/location.svg" alt=""><h5>Nigeria</h5>
+            <img src="~/assets/location.svg" alt="">
+            <h5>Nigeria</h5>
           </section>
           <h5 class="job-price-range">
             $80,000 - $90,000
@@ -86,7 +88,7 @@
   transform: translateY(4px);
 }
 
-@media only screen and (min-width: 768px){
+@media only screen and (min-width: 768px) {
   .title {
     font-size: 32px;
   }
@@ -97,13 +99,13 @@
 
 }
 
-@media only screen and (min-width: 1024px){
+@media only screen and (min-width: 1024px) {
   .link-wrapper {
     width: 40%;
   }
 }
 
-@media only screen and (min-width: 1366px){
+@media only screen and (min-width: 1366px) {
   .link-wrapper {
     width: 30%;
   }
