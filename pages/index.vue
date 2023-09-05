@@ -3,8 +3,9 @@
     <h1 class="title">My NuxtBoard</h1>
   </header>
 
-  <body>
-    <article class="link-wrapper">
+
+  <article class="link-wrapper">
+    <ClientOnly>
       <NuxtLink class="links" to="/">
         <h3 class="job-title">Personal Finance Writer & Editor</h3>
         <div class="job-details">
@@ -20,8 +21,8 @@
           </h5>
         </div>
       </NuxtLink>
-    </article>
-  </body>
+    </ClientOnly>
+  </article>
 </template>
 
 <style>
