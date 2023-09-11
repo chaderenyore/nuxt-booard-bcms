@@ -34,7 +34,7 @@
           <div class="job-form-names">
             <div class="job-form-firstname">
               <label for="f_name">First Name <span style="color: rgb(140, 196, 46);">*</span></label>
-              <input type="text" name="f_name" maxlength="32" required="">
+              <input type="text" name="f_name" maxlength="32" required>
             </div>
             <div class="job-form-lastname">
               <div><label for="l_name">Last Name
@@ -109,9 +109,36 @@
   </section>
 </template>
 
-<script>
+
+<script setup lang='ts'>
+import { OpeningEntry } from '~~/bcms/types';
+
+const route = useRoute();
+const { data, error } = useAsyncData(async (ctx) => {
+
+  // Get Single Opening entries
+  const opening = (await ctx?.$bcms.entry.get({
+    // Template name or ID
+    template: 'opening',
+    entry: route.params.slug
+  })) as OpeningEntry;
+  return {
+    opening: opening
+  };
+});
+const opening = data.value?.opening;
+console.log(opening)
+if (error.value) {
+  throw createError({
+    statusCode: 500,
+    statusMessage: error.value.message,
+    stack: error.value.stack,
+    fatal: true,
+  });
+}
 
 </script>
+
 
 <style>
 * {
