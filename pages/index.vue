@@ -2,28 +2,27 @@
   <header class="header">
     <h1 class="title">My NuxtBoard</h1>
   </header>
-
   <article class="link-wrapper">
-    <NuxtLink class="links" to="/">
-      <h3 class="job-title">Personal Finance Writer & Editor</h3>
-      <div class="job-details">
-        <section class="job-location">
-          <img src="~/assets/location.svg" alt="">
-          <h5>Nigeria</h5>
-        </section>
-        <h5 class="job-price-range">
-          $80,000 - $90,000
-        </h5>
-        <h5 class="job-date">
-          21-08-2023
-        </h5>
-      </div>
-    </NuxtLink>
+    <ClientOnly>
+      <NuxtLink class="links" :to="opening.meta.en?.slug" v-for="opening in entries" :key="opening._id">
+        <h3 class="job-title">{{ opening.meta.en?.title }}</h3>
+        <div class="job-details">
+          <section class="job-location">
+            <img src="~/assets/location.svg" alt="">
+            <h5>{{ opening.meta.en?.location }}</h5>
+          </section>
+          <h5 class="job-price-range">{{ opening.meta.en?.salary_range }}</h5>
+          <h5 class="job-date">
+            {{ opening.createdAt }}
+          </h5>
+        </div>
+      </NuxtLink>
+    </ClientOnly>
   </article>
 </template>
 
 <script setup lang='ts'>
-import { OpeningEntry, OpeningTemplate, OpeningEntryMeta } from '~~/bcms/types';
+import { OpeningEntry } from '~~/bcms/types';
 
 const { data, error } = useAsyncData(async (ctx) => {
 
