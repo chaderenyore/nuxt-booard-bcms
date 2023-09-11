@@ -26,94 +26,127 @@
         <p class="sidebar-item-data">July 27th, 2023</p>
       </div>
     </div>
-    <div class="job-description">
-
-
-      <div class="job-form">
-        <form>
-          <div class="job-form-names">
-            <div class="job-form-firstname">
-              <label for="f_name">First Name <span style="color: rgb(140, 196, 46);">*</span></label>
-              <input type="text" name="f_name" maxlength="32" required="">
-            </div>
-            <div class="job-form-lastname">
-              <div><label for="l_name">Last Name
-                  <span style="color: rgb(140, 196, 46);">*</span></label><input type="text" name="l_name" maxlength="32"
-                  required>
+    <ClientOnly>
+      <div class="job-description" v-if="opening">
+        <div class="job-explainer">
+          <h1 class="job-explainer-title">
+            {{ opening.meta.en?.title }}
+          </h1>
+          <div class="job-explainer-description">
+            <pre v-for="(item, index) in opening?.meta.en?.job_description"
+              v-html="opening?.meta.en?.job_description[index].value"></pre>
+          </div>
+          <div class="job-explainer-profile">
+            <pre v-for="(item, index) in opening?.meta.en?.candidate_profile"
+              v-html="opening?.meta.en?.candidate_profile[index].value"></pre>
+          </div>
+          <div class="job-explainer-perks">
+            <pre v-for="(item, index) in opening?.meta.en?.job_perks"
+              v-html="opening?.meta.en?.job_perks[index].value"></pre>
+          </div>
+        </div>
+        <div class="job-form">
+          <form>
+            <div class="job-form-names">
+              <div class="job-form-firstname">
+                <label for="f_name">First Name <span style="color: rgb(140, 196, 46);">*</span></label>
+                <input type="text" name="f_name" maxlength="32" required>
               </div>
-            </div>
-          </div>
-
-          <div class="job-form-contact">
-            <div class="job-form-email"><label for="email">Email Address <span
-                  style="color: rgb(140, 196, 46);">*</span></label><input type="email" name="email" maxlength="64"
-                required>
-            </div>
-            <div class="job-form-phone"><label for="email">Phone</label><input type="text" name="phone" maxlength="16">
-            </div>
-          </div>
-
-          <div class="job-form-links">
-            <div class="job-form-github">
-              <div><label for="github">Github/Linkedin<span style="color: rgb(140, 196, 46);">*</span></label>
-                <input type="text" name="github" maxlength="32" required>
-              </div>
-            </div>
-          </div>
-
-          <div class="job-form-letter">
-            <div><label for="cover_letter">Cover
-                Letter<span style="color: rgb(140, 196, 46);">*</span></label>
-              <textarea cols="23" required name="cover_letter"></textarea>
-            </div>
-          </div>
-
-          <div class="job-upload">
-
-            <div><label>CV / Resume <span style="color: rgb(140, 196, 46);">*</span></label><input id="attach" type="file"
-                style="display: none;" accept=".pdf,.doc,.docx,.rtf,.jpg,.jpeg"><label for="attach"
-                class="job-upload-label"><svg class="svg-inline--fa fa-upload" aria-hidden="true" focusable="false"
-                  data-prefix="fad" data-icon="upload" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
-                  data-fa-i2svg="">
-                  <g class="fa-duotone-group">
-                    <path class="fa-secondary" fill="currentColor"
-                      d="M288 352v32c0 17.7-14.3 32-32 32s-32-14.3-32-32V352H64c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H288zm120 80a24 24 0 1 1 48 0 24 24 0 1 1 -48 0z">
-                    </path>
-                    <path class="fa-primary" fill="currentColor"
-                      d="M256 416c17.7 0 32-14.3 32-32V109.3l73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L224 109.3V384c0 17.7 14.3 32 32 32z">
-                    </path>
-                  </g>
-                </svg>Attach CV/Resume</label>
-              <div class="job-upload-tip">
-                <p><strong>Tip: </strong>Allowed file types; pdf, doc, docx,
-                  rtf, jpg, jpeg. No larger than 10mb.</p>
-              </div>
-
-              <div class="job-sumbit">
-                <div class="job-submit-inner">
-                  <div class="job-submit-powered">
-                    <a target="_blank" href="https:/thebcms.com">Powered by THEBCMS</a>
-                  </div>
-
-                  <div class="job-submit-btn" style="background-color: rgb(140, 196, 46);">
-                    <p>Submit</p>
-                  </div>
-
+              <div class="job-form-lastname">
+                <div><label for="l_name">Last Name
+                    <span style="color: rgb(140, 196, 46);">*</span></label><input type="text" name="l_name"
+                    maxlength="32" required>
                 </div>
               </div>
             </div>
-          </div>
-        </form>
+
+            <div class="job-form-contact">
+              <div class="job-form-email"><label for="email">Email Address <span
+                    style="color: rgb(140, 196, 46);">*</span></label><input type="email" name="email" maxlength="64"
+                  required>
+              </div>
+              <div class="job-form-phone"><label for="email">Phone</label><input type="text" name="phone" maxlength="16">
+              </div>
+            </div>
+
+            <div class="job-form-links">
+              <div class="job-form-github">
+                <div><label for="github">Github/Linkedin<span style="color: rgb(140, 196, 46);">*</span></label>
+                  <input type="text" name="github" maxlength="32" required>
+                </div>
+              </div>
+            </div>
+
+            <div class="job-form-letter">
+              <div><label for="cover_letter">Cover
+                  Letter<span style="color: rgb(140, 196, 46);">*</span></label>
+                <textarea cols="23" required name="cover_letter"></textarea>
+              </div>
+            </div>
+
+            <div class="job-upload">
+
+              <div><label>CV / Resume <span style="color: rgb(140, 196, 46);">*</span></label><input id="attach"
+                  type="file" style="display: none;" accept=".pdf,.doc,.docx,.rtf,.jpg,.jpeg"><label for="attach"
+                  class="job-upload-label"><svg class="svg-inline--fa fa-upload" aria-hidden="true" focusable="false"
+                    data-prefix="fad" data-icon="upload" role="img" xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 512 512" data-fa-i2svg="">
+                    <g class="fa-duotone-group">
+                      <path class="fa-secondary" fill="currentColor"
+                        d="M288 352v32c0 17.7-14.3 32-32 32s-32-14.3-32-32V352H64c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H288zm120 80a24 24 0 1 1 48 0 24 24 0 1 1 -48 0z">
+                      </path>
+                      <path class="fa-primary" fill="currentColor"
+                        d="M256 416c17.7 0 32-14.3 32-32V109.3l73.4 73.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0l-128 128c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L224 109.3V384c0 17.7 14.3 32 32 32z">
+                      </path>
+                    </g>
+                  </svg>Attach CV/Resume</label>
+                <div class="job-upload-tip">
+                  <p><strong>Tip: </strong>Allowed file types; pdf, doc, docx,
+                    rtf, jpg, jpeg. No larger than 10mb.</p>
+                </div>
+
+                <div class="job-sumbit">
+                  <div class="job-submit-inner">
+                    <div class="job-submit-powered">
+                      <a target="_blank" href="https:/thebcms.com">Powered by THEBCMS</a>
+                    </div>
+
+                    <div class="job-submit-btn" style="background-color: rgb(140, 196, 46);">
+                      <p>Submit</p>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
-    </div>
+    </ClientOnly>
   </section>
 </template>
 
-<script>
+<script setup lang='ts'>
+import { OpeningEntry } from '~~/bcms/types';
 
+const route = useRoute();
+const { data, error } = useAsyncData(async (ctx) => {
+
+  // Get Single Opening entries
+  const opening = (await ctx?.$bcms.entry.get({
+    // Template name or ID
+    template: 'opening',
+    entry: 'personal-finance-writer-editor'
+  })) as OpeningEntry;
+  return {
+    opening: opening
+  };
+});
+const opening = data.value?.opening;
+console.log(opening)
 </script>
 
-<style>
+<style scoped>
 * {
   margin: 0;
   padding: 0;
@@ -203,6 +236,33 @@ label {
 
 .job-description {
   padding-top: 15px;
+}
+
+.job-explainer {
+  color: #091E42;
+}
+
+.job-explainer-title {
+  font-size: 1.8rem;
+}
+
+.job-explainer-description {
+  letter-spacing: 0.32px;
+}
+
+
+.job-explainer-profile {
+  letter-spacing: 0.32px;
+  margin-top: 20px;
+}
+
+.job-explainer-perks {
+  letter-spacing: 0.32px;
+  margin-top: 20px;
+}
+
+pre {
+  white-space: pre-line;
 }
 
 .job-form {
@@ -379,6 +439,10 @@ input {
 @media only screen and (min-width: 1150px) {
   .page-detail {
     flex-direction: row;
+  }
+  
+  .job-detail {
+    margin: 20px;
   }
 }
 </style>
